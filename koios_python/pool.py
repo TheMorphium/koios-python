@@ -139,10 +139,9 @@ def get_pool_delegators_history(self, pool_bech32, epoch_no=None):
         try:
             if epoch_no is None:
                 info = requests.get(self.POOL_DELEGATORS_HISTORY_URL + pool_bech32, timeout=timeout)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.POOL_DELEGATORS_HISTORY_URL}{pool_bech32}&_epoch_no={epoch_no}", timeout=timeout)
-                info = json.loads(info.content)
+            info = json.loads(info.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -172,10 +171,9 @@ def get_pool_blocks(self, pool_bech32, epoch_no=None):
         try:
             if epoch_no is None:
                 info = requests.get(self.POOL_BLOCKS_URL + pool_bech32, timeout=timeout)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.POOL_BLOCKS_URL}{pool_bech32}&_epoch_no={epoch_no}", timeout=timeout)
-                info = json.loads(info.content)
+            info = json.loads(info.content)
             break
         except requests.exceptions.ReadTimeout as timeout_error:
             print(f"Exception: {timeout_error}")
@@ -205,10 +203,9 @@ def get_pool_history(self, pool_bech32, epoch_no="history"):
         try:
             if epoch_no == "history":
                 info = requests.get(f"{self.POOL_HISTORY_URL}{pool_bech32}", timeout=timeout)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.POOL_HISTORY_URL}{pool_bech32}&_epoch_no={epoch_no}", timeout=timeout)
-                info = json.loads(info.content)
+            info = json.loads(info.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -237,10 +234,9 @@ def get_pool_updates(self, pool_bech32=None):
         try:
             if pool_bech32 is None:
                 pool_list = requests.get(self.POOL_UPDATES_URL, timeout=timeout)
-                pool_list  = json.loads(pool_list.content)
             else:
                 pool_list = requests.get(f"{self.POOL_UPDATES_URL}?_pool_bech32={pool_bech32}", timeout=timeout)
-                pool_list  = json.loads(pool_list.content)
+            pool_list  = json.loads(pool_list.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -296,13 +292,12 @@ def get_pool_metadata(self, *args):
 
     while True:
         try:
-            if len(args) == 0:
+            if not args:
                 pool_list = requests.post(self.POOL_METADATA_URL, timeout=timeout)
-                pool_list  = json.loads(pool_list.content)
             else:
                 get_format = {"_pool_bech32_ids": [args]}
                 pool_list = requests.post(self.POOL_METADATA_URL, json = get_format, timeout=timeout)
-                pool_list  = json.loads(pool_list.content)
+            pool_list  = json.loads(pool_list.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:

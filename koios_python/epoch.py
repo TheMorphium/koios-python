@@ -21,12 +21,10 @@ def get_epoch_info(self, epoch_no=None):
         try:
             if epoch_no is None:
                 info = requests.get(self.EPOCH_INFO_URL, timeout=timeout)
-                print(self.EPOCH_INFO_URL)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.EPOCH_INFO_URL}?_epoch_no={epoch_no}", timeout=timeout)
-                print(self.EPOCH_INFO_URL)
-                info = json.loads(info.content)
+            print(self.EPOCH_INFO_URL)
+            info = json.loads(info.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -56,10 +54,9 @@ def get_epoch_params(self, epoch_no=None):
         try:
             if epoch_no is None:
                 info = requests.get(self.EPOCH_PARAMS_URL, timeout=timeout)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.EPOCH_PARAMS_URL}?_epoch_no={epoch_no}", timeout=timeout)
-                info = json.loads(info.content)
+            info = json.loads(info.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -88,10 +85,9 @@ def get_epoch_block_protocols(self, epoch_no=None):
         try:
             if epoch_no is None:
                 info = requests.get(self.EPOCH_BLOCKS_URL, timeout=10)
-                info = json.loads(info.content)
             else:
                 info = requests.get(f"{self.EPOCH_BLOCKS_URL}?_epoch_no={epoch_no}", timeout=timeout)
-                info = json.loads(info.content)
+            info = json.loads(info.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:

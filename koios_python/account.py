@@ -109,12 +109,10 @@ def get_account_rewards(self, *args):
         try:
             if not isinstance(epoch, int):
                 get_format = {"_stake_addresses": [args] }
-                rewards = requests.post(self.ACCOUNT_REWARDS_URL, json= get_format , timeout=timeout)
-                rewards = json.loads(rewards.content)
             else:
                 get_format = {"_stake_addresses": [args], "_epoch_no": epoch}
-                rewards = requests.post(self.ACCOUNT_REWARDS_URL, json= get_format , timeout=timeout)
-                rewards = json.loads(rewards.content)
+            rewards = requests.post(self.ACCOUNT_REWARDS_URL, json= get_format , timeout=timeout)
+            rewards = json.loads(rewards.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
@@ -293,12 +291,10 @@ def get_account_history(self, *args):
         try:
             if not isinstance(epoch, int):
                 get_format = {"_stake_addresses": [args] }
-                history = requests.post(self.ACCOUNT_HISTORY_URL, json= get_format , timeout=timeout)
-                history = json.loads(history.content)
             else:
                 get_format = {"_stake_addresses": [args], "_epoch_no": epoch}
-                history = requests.post(self.ACCOUNT_HISTORY_URL, json= get_format , timeout=timeout)
-                history = json.loads(history.content)
+            history = requests.post(self.ACCOUNT_HISTORY_URL, json= get_format , timeout=timeout)
+            history = json.loads(history.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:

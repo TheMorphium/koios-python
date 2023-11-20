@@ -2,6 +2,7 @@
 """
 Examples to check how works Koios-Python Library
 """
+
 import pprint # We recommend use pprint library to show your outputs
 import koios_python # We need to install and import koios_python library
 import time
@@ -53,7 +54,7 @@ print('Average Time: '+ str(total) + ' s')
 query=kp.get_account_assets("stake1u9f9v0z5zzlldgx58n8tklphu8mf7h4jvp2j2gddluemnssjfnkzz")
 #query=kp.get_account_addresses("stake1u8jm3v2q8h46q485j8e8uxqmj33f4cy4xvadkuq5g2c27ls44jflg")
 d=query[0]
-print(sum([len(d[x]) for x in d if isinstance(d[x], list)]))
+print(sum(len(d[x]) for x in d if isinstance(d[x], list)))
 
 
 check_big_account = kp.get_account_addresses(["stake1uxqh9rn76n8nynsnyvf4ulndjv0srcc8jtvumut3989cqmgjt49h6"])
