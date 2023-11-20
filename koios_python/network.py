@@ -75,10 +75,9 @@ def get_totals(self, epoch_no=None):
         try:
             if epoch_no is None:
                 totals = requests.get(self.TOTALS_URL, timeout=timeout)
-                totals = json.loads(totals.content)
             else:
                 totals = requests.get(f"{self.TOTALS_URL}?_epoch_no={epoch_no}", timeout=timeout)
-                totals = json.loads(totals.content)
+            totals = json.loads(totals.content)
             break
 
         except requests.exceptions.ReadTimeout as timeout_error:
